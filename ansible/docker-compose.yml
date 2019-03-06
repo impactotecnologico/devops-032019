@@ -1,0 +1,50 @@
+version: '3'
+services:
+
+  hugo:
+    image: ubuntu
+    hostname: hugo
+    networks: 
+      - red-ansibles
+    command: [sh, -c, "sleep infinity"]
+    ports:
+      - "2221:22"
+    expose: 
+      - "22"
+
+  paco:
+    image: ubuntu
+    hostname: paco
+    networks: 
+      - red-ansibles
+    command: [sh, -c, "sleep infinity"]
+    ports:
+      - "2222:22"
+    expose: 
+      - "22"
+
+  luis:
+    image: ubuntu
+    hostname: luis
+    networks: 
+      - red-ansibles    
+    command: [sh, -c, "sleep infinity"]
+    ports:
+      - "2223:22"
+    expose: 
+      - "22"
+
+  ansible-runner:
+    image: ansible
+    networks: 
+      - red-ansibles
+    links:
+      - hugo
+      - paco
+      - luis
+    command: [sh, -c, "sleep infinity"]
+
+networks:
+  red-ansibles:
+    driver: bridge
+    

@@ -1,0 +1,7 @@
+- hosts: otros
+  vars:
+       ip: "11.22.33.44"
+
+  tasks:
+  - name: creacion
+    template: src=template_vars.j2 dest=/tmp/vars

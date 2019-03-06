@@ -1,0 +1,10 @@
+[principal] 
+hugo ansible_host=192.168.1.134
+
+[otros]
+paco
+
+[all:vars]
+ansible_connection=ssh
+ansible_user=impacto
+ansible_ssh_pass=dolares

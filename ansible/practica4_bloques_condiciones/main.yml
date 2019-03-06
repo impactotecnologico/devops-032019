@@ -1,0 +1,20 @@
+- hosts: all
+  tasks:
+  - name: Manejo de Errores
+    block:
+      - debug:
+          msg: 'Esta es una ejecucion normal'      
+      - name: forzando un fallo
+        command: /bin/false
+      - debug:
+          msg: 'Nunca se ejecutará por el fallo de la tarea anterior :-('
+    rescue:
+      - debug:
+          msg: 'Aqui se captura el error :-)'
+    always:
+      - debug:
+          msg: 'Esto siempre se ejecutara'
+
+
+
+          

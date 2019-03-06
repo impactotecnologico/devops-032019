@@ -1,0 +1,15 @@
+---
+- hosts: paco
+  become: true
+#  vars:
+#    paquete: vim
+#  tasks:
+#    - name: Instalacion de Paquete
+#      yum: name={{ paquete }} state=latest
+
+
+#  vars:
+#     paquetes: [ 'git', 'curl' ]
+#  tasks:
+#     - name: Instalacion de paquetes v2
+#       yum: name={{ paquetes }} state=latest

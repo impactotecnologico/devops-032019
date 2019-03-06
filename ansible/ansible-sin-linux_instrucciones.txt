@@ -1,0 +1,2 @@
+docker build -t it/ansible  -f Dockerfile.install .
+docker run --rm -it -v $(pwd):/ansible/playbooks it/ansible -i practica1/hosts  practica1/playbook2.yml --ask-become-pas

@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  mysql-db:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+    ports:
+      - '33061:3306'
+
+  apache-runner:
+    image: httpd
+    ports:
+      - '8005:80'
+
+
+

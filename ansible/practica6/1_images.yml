@@ -1,0 +1,49 @@
+---
+- hosts: hugo
+  become: true
+  become_method: sudo
+  tasks:
+
+  - name: Instalemos el EPEL repo
+    yum: name=epel-release state=present
+
+  - name: Instalemos Python
+    yum: name=python-pip state=present
+  
+  - name: Instalemos docker-py 
+    pip: name=docker-py
+
+  - name: Hacemos Pull de una Imagen
+    docker_image:
+      name: pacur/centos-7
+
+  - name: Creamos un contenedor simple
+    docker_container:
+      name: mydata
+      image: busybox
+
+  - name: Creamos un contenedor Redis con mas opciones
+    docker_container:
+      name: myredis
+      image: redis
+      command: redis-server --appendonly yes
+      state: present
+      recreate: yes
+      exposed_ports:
+        - 6379
+
+  - name: Stop a container
+    docker_container:
+      name: myredis
+      state: stopped
+
+  - name: remove container
+    docker_container:
+      name: mydata
+      state: absent
+
+  - name: Create a container with limited capabilities
+    docker_container:
+      name: sleepy
+      image: ubuntu:16.04
+      command: sleep infinity

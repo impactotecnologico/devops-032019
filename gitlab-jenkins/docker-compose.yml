@@ -1,0 +1,30 @@
+version: '3'
+services:
+  web:
+    image: 'gitlab/gitlab-ce:latest'
+    restart: always
+    hostname: 'gitlab'
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'https://localhost:9091'
+    ports:
+      - '81:80'
+      - '4443:443'
+      - '22:22'
+      - '9091:9091'
+    networks:
+      - red-local
+
+  jenkins:
+    image: 'jenkins/jenkins:lts'
+    restart: always
+    hostname: 'jenkins'
+    ports:
+      - '8081:8080'
+      - '2122:22'
+    networks:
+      - red-local
+  
+networks:
+  red-local:
+    driver: bridge

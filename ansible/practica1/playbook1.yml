@@ -1,0 +1,17 @@
+- hosts: principal
+  become: true
+  tasks:
+
+  - name: Instalemos el EPEL release para nginx
+    yum: name=epel-release state=present
+    notify: Start Nginx
+
+  - name: Instalemos nginx web server
+    yum: name=nginx state=installed update_cache=true  
+ 
+  handlers:
+ 
+    - name: Start Nginx
+      service: name=nginx state=started
+
+      

@@ -1,0 +1,8 @@
+---
+- block:
+  - name: message 1
+    debug: msg=operation1
+  - name: message 2
+    debug: msg=operation2
+  - name: message 3
+    debug: msg=operation3

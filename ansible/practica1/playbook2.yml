@@ -1,0 +1,17 @@
+- hosts: all
+  gather_facts: false
+  tasks:
+    - block:
+
+      - debug:
+          msg: "task 1"
+
+      - debug:
+          msg: "task 2"
+        when: false
+
+      - debug:
+          msg: "task 3"
+        when: true
+
+      when: true
