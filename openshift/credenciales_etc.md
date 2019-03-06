@@ -1,4 +1,4 @@
-#Maquina Virtual para Openshift
+# Maquina Virtual para Openshift
 
 URL de descarga: https://drive.google.com/file/d/1mjAtpJhzdAVkQIlenuJRDHZoxu_laOjZ/view?usp=sharing 
 
@@ -6,18 +6,18 @@ URL de descarga: https://drive.google.com/file/d/1mjAtpJhzdAVkQIlenuJRDHZoxu_laO
 + Openshift: Origin Latest
 
 
-##Importación del .OVA
+## Importación del .OVA
 
-###Red
+### Red
 Al importarlo se debe confirmar que tiene 2 adaptadores de red activos, el primero en modo NAT y el segundo en modo Puente. 
 
-###Memoria
+### Memoria
 Debe tener 4gb de RAM
 
-###CPU
+### CPU
 Habilitar el máximo de CPU disponible en la sección verde del slider de selección
 
-###Software base
+### Software base
 La VM ya tiene ejecutado `yum update && yum upgrade`
 Está instalado:
 
@@ -27,13 +27,13 @@ Está instalado:
 Se clonó el *repositorio base* en /root/installcentos
 
 
-##Usuarios
+## Usuarios
 
 + root:mvpemqcv.2019
 + impacto:dolares
 
 
-##Comandos a ejecutar en clase entrando como root:
+## Comandos a ejecutar en clase entrando como root:
 
 ```
 hostnamectl set-hostname originlocal
@@ -43,14 +43,14 @@ yum install -y lynx
 ifconfig (tomar nota de la ip tipo bridge)
 ```
 
-##Mapeo en el anfitrion
+## Mapeo en el anfitrion
 
 Editar (como root o administrador)  /etc/hosts en plataformas Unix, o c:\Windows\System32\Drivers\etc\hosts en Windows. Añadiendo un mapeo del tipo:
 
 `IP_MAQUINA_VIRTUAL     originlocal`
 
 
-#Instalación de Openshift
+# Instalación de Openshift
 
 1. Entrar en el directorio del repositorio:
 
@@ -62,13 +62,13 @@ Editar (como root o administrador)  /etc/hosts en plataformas Unix, o c:\Windows
 
 3. El script preguntará por los siguientes valores (usar los valores mostrados después de los ":" salvo la ip de la máquina virtual
 
-Domain to use: (94.73.49.103.nip.io): originlocal
-Username: (root): root
-Password: (password): password
-OpenShift Version: (3.11): 3.11 
-IP: (192.168.1.141): [IP_DE_LA_MAQUINA_VIRTUAL]
-API Port: (8443): 8443
-Do you wish to enable HTTPS with Let's Encrypt?: 2
++ Domain to use: (94.73.49.103.nip.io): originlocal
++ Username: (root): root
++ Password: (password): password
++ OpenShift Version: (3.11): 3.11 
++ IP: (192.168.1.141): [IP_DE_LA_MAQUINA_VIRTUAL]
++ API Port: (8443): 8443
++ Do you wish to enable HTTPS with Let's Encrypt?: 2
 
 
 De resto el script ejecutará y tardará aproximadamene 80minutos
@@ -107,7 +107,7 @@ You have access to the following projects and can switch between them with 'oc p
 Using project "default".
 ```
 
-##Base
+## Base
 
 Base tomada de https://github.com/impactotecnologico/installcentos
 
