@@ -1,0 +1,16 @@
+---
+- name: Configurando Php
+  hosts: principal
+  become: true
+  tasks:
+  - name: Habilitando display errors en php.ini
+    ini_file:
+      path: /etc/php.ini
+      section: PHP
+      option: display_errors
+      value: On
+      backup: yes
+    notify: reinicia apache
+  handlers:
+    - name: reinicia apache
+      service: name=httpd state=restarted enabled=yes

@@ -1,0 +1,18 @@
+- hosts: all
+  tasks:
+  - name: Manejo de Errores
+    block:
+      - debug:
+          msg: 'Esta es una ejecucion normal'  
+#        when: ansible_distribution == 'CentOS'   #aqui es para una accion 
+      - name: forzando un fallo
+        command: /bin/false
+      - debug:
+          msg: 'Nunca se ejecutará por el fallo de la tarea anterior :-('
+    rescue:
+      - debug:
+          msg: 'Aqui se captura el error :-)'
+    always:
+      - debug:
+          msg: 'Esto siempre se ejecutara'
+    when: ansible_distribution == 'CentOS' ## aqui es para toda la tarea

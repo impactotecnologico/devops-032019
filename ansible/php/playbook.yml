@@ -1,0 +1,31 @@
+---
+- name: Instalacion Global de Php
+  hosts: principal
+  become: true
+  tasks:
+  - name: Instala yum-utils
+    yum: name=yum-utils state=present
+
+  - name: Instala repo de php7
+    yum: name=http://rpms.remirepo.net/enterprise/remi-release-7.rpm state=present
+
+  - name: Habilita php7.2
+    command: yum-config-manager --enable remi-php72
+
+  - name: Instala fpm, curl, opcache...
+    yum: 
+      name: 
+        - php
+        - php-common
+        - php-opcache
+        - php-mcrypt
+        - php-cli
+        - php-gd
+        - php-curl
+        - php-fpm
+        - php
+      state: present
+
+
+  - name: asegura que php-fpm esta corriendo
+    service: name=php-fpm state=started enabled=yes

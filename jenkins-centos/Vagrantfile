@@ -1,0 +1,47 @@
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+  config.vm.define "jenkins" do |jenkins|
+
+    jenkins.vm.box = "centos/7"
+    jenkins.vm.box_version = "1710.01"
+
+    jenkins.vm.provider "virtualbox" do |vb|
+      vb.customize ["modifyvm", :id, "--cableconnected1", "on"]
+    end
+
+    jenkins.vm.network "forwarded_port", guest: 22, host: 2222, host_ip: "127.0.0.1", id: 'ssh'
+
+
+    jenkins.vm.network "forwarded_port", guest: 8080, host: 8081
+
+    # Set up a private IP in the Vagrant Environment. Important for Multi-Host Vagrant deployments.
+    jenkins.vm.network "private_network", ip: "192.168.10.10"
+	
+	jenkins.vm.hostname = "jenkins"
+
+  end
+  
+  config.vm.define "server" do |server|
+
+    server.vm.box = "centos/7"
+    server.vm.box_version = "1710.01"
+
+    server.vm.provider "virtualbox" do |vb|
+      vb.customize ["modifyvm", :id, "--cableconnected1", "on"]
+    end
+
+    server.vm.network "forwarded_port", guest: 22, host: 2220, host_ip: "127.0.0.1", id: 'ssh'
+
+    server.vm.network "forwarded_port", guest: 3000, host: 3000
+	
+	server.vm.network "forwarded_port", guest: 80, host: 81
+
+    # Set up a private IP in the Vagrant Environment. Important for Multi-Host Vagrant deployments.
+    server.vm.network "private_network", ip: "192.168.10.11"
+	
+	server.vm.hostname = "server-app"
+
+  end
+end
